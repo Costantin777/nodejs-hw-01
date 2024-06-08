@@ -1,6 +1,9 @@
+import path from 'path';
 import fs from 'fs/promises';
 
-import { PATH_DB } from '../constants/contacts.js';
+// Складаємо шлях до файлу з контактами за допомогою методу join
+const PATH_DB = path.join(__dirname, '../constants/contacts.js');
+
 import { createFakeContact } from '../utils/createFakeContact.js';
 
 const generateContacts = async (number) => {
@@ -10,10 +13,7 @@ const generateContacts = async (number) => {
     const contacts = JSON.parse(data);
 
     // Генеруємо нові контакти
-    const newContacts = [];
-    for (let i = 0; i < number; i++) {
-      newContacts.push(createFakeContact());
-    }
+    const newContacts = Array.from({ length: number }, createFakeContact);
 
     // Додаємо нові контакти до існуючого масиву
     const updatedContacts = [...contacts, ...newContacts];
