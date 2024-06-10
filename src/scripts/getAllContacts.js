@@ -1,9 +1,6 @@
 import path from 'path';
 import fs from 'fs/promises';
-
-// Складаємо шлях до файлу з контактами за допомогою методу join
-const PATH_DB = path.join(__dirname, '../constants/contacts.js');
-
+import { PATH_DB } from '../constants/contacts.js';
 export const getAllContacts = async () => {
   try {
     const data = await fs.readFile(PATH_DB, 'utf-8');
